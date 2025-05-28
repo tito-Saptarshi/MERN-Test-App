@@ -18,7 +18,7 @@ const HomePage = () => {
     e.preventDefault();
     
     try {
-      const response = await fetch("http://localhost:5001/api/auth/tester", {
+      const response = await fetch("https://mern-test-app-qj95.vercel.app/api/auth/tester", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const HomePage = () => {
   };
 
 
-  
+
   return (
     <div>
       <h1>Register</h1>

@@ -14,11 +14,13 @@ app.use(express.json());
 //     credentials: true, // allow frontend to send cookies
 // }));
 
-
-app.use(cors({
+app.use(
+  cors({
     origin: "https://mern-test-app-beta.vercel.app/",
-    credentials: true, // allow frontend to send cookies
-}));
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
 
 const authRoutes = express.Router();
 
@@ -30,26 +32,24 @@ authRoutes.post("/tester", async (req, res) => {
   const { email, password, fullName } = req.body;
 
   try {
-
     const newUser = await User.create({
       email,
       fullName,
       password,
-  
     });
 
-    return res.status(201).json({ message: "User created successfully", user: newUser });
+    return res
+      .status(201)
+      .json({ message: "User created successfully", user: newUser });
   } catch (error) {
     console.error("Error creating user:", error);
     return res.status(500).json({ message: "Internal server error" });
   }
 });
 
-
 app.use("/api/auth", authRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-   connectDB();
-})
-
+  connectDB();
+});

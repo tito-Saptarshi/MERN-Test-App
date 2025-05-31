@@ -9,16 +9,16 @@ import cors from "cors";
 
 app.use(express.json());
 
-// app.use(cors({
-//     origin: "http://localhost:5173",
-//     credentials: true, // allow frontend to send cookies
-// }));
-
-
 app.use(cors({
-    origin: "https://mern-test-app-beta.vercel.app",
+    origin: "http://localhost:5173",
     credentials: true, // allow frontend to send cookies
 }));
+
+
+// app.use(cors({
+//     origin: "https://mern-test-app-beta.vercel.app",
+//     credentials: true, // allow frontend to send cookies
+// }));
 
 const authRoutes = express.Router();
 
